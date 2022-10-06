@@ -15,7 +15,7 @@
     首先要启动项目然后访问下面的地址
 
     http://0.0.0.0:5100/app/api/docs
-![img.png](https://raw.githubusercontent.com/preceeder/FastapiApscheduler/14d7072032e37f9e1b9d80da4e13facc586509ae/static/img.png)
+![img.png](../static/img.png)
 
 
 
