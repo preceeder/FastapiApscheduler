@@ -15,7 +15,8 @@
     首先要启动项目然后访问下面的地址
 
     http://0.0.0.0:5100/app/api/docs
-![img.png](../static/img.png)
+
+![img.png](static/img.png)
 
 
 
