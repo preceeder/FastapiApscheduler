@@ -16,7 +16,7 @@
 
     http://0.0.0.0:5100/app/api/docs
 
-    ![img.png](../static/img.png)
+    ![img.png](https://raw.githubusercontent.com/preceeder/FastapiApscheduler/14d7072032e37f9e1b9d80da4e13facc586509ae/static/img.png)
 
 
 
