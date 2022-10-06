@@ -1,0 +1,906 @@
+13:04:39.784 | INFO | apps.dbdriver.mysql.connect_pool| 41 | 连接异步数据库:121.4.108.200, -- test_001
+13:04:39.969 | INFO | apps.dbdriver.redis.redis_connect_pool| 35 | 连接Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:04:39.970 | INFO | apps.dbdriver.redis.redis_connect_pool| 77 | 连接Sync_Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:04:40.154 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: 
+                    create table if not exists source_task(
+                      `id` varchar(191) NOT NULL,
+                      `next_run_time` double DEFAULT NULL,
+                      `job_state` blob NOT NULL,
+                      PRIMARY KEY (`id`),
+                      KEY `ix_api_job_next_run_time` (`next_run_time`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+                 ; data: None
+13:04:40.380 | INFO | apscheduler.schedulers.base.start| 166 | Scheduler started
+13:04:40.381 | INFO | apps.core.ini_scheduler.init_scheduler| 102 | apps is running...
+13:04:40.381 | INFO | main.startup| 58 | 开始加载 静态任务
+13:04:40.434 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:04:40.554 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665032680.434893 ; data: None
+13:04:40.607 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:04:40.750 | DEBUG | apscheduler.schedulers.base._process_jobs| 1016 | No jobs; waiting until a job is added
+13:08:14.993 | INFO | apps.dbdriver.mysql.connect_pool| 41 | 连接异步数据库:121.4.108.200, -- test_001
+13:08:15.185 | INFO | apps.dbdriver.redis.redis_connect_pool| 35 | 连接Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:08:15.185 | INFO | apps.dbdriver.redis.redis_connect_pool| 77 | 连接Sync_Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:08:15.282 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: 
+                    create table if not exists source_task(
+                      `id` varchar(191) NOT NULL,
+                      `next_run_time` double DEFAULT NULL,
+                      `job_state` blob NOT NULL,
+                      PRIMARY KEY (`id`),
+                      KEY `ix_api_job_next_run_time` (`next_run_time`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+                 ; data: None
+13:08:15.405 | INFO | apscheduler.schedulers.base.start| 166 | Scheduler started
+13:08:15.406 | INFO | apps.core.ini_scheduler.init_scheduler| 102 | apps is running...
+13:08:15.406 | INFO | main.startup| 58 | 开始加载 静态任务
+13:08:15.459 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_book', 'next_run_time': 1665034094.129045, 'job_state': b'\x80\x05\x95\xf0\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\x08new_book\x94\x8c\x04func\x94\x8c&apps.tasks.sources.new_book:start_book\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\r\x1c\x0e\x01\xf8\x15\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\nstart_book\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\r\x1c\x0e\x01\xf8\x15\x94h\x1b\x86\x94R\x94u.'}
+13:08:15.684 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_book' ; data: None
+13:08:15.741 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_book', 'type': 0, 'job_info': '{"version": 1, "id": "new_book", "func": "apps.tasks.sources.new_book:start_book", "executor": "default", "args": [], "kwargs": {}, "name": "start_book", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 13:28:14.129045+08:00"}'}; t_index: None
+13:08:15.774 | ERROR | apps.dbdriver.mysql.execute| 319 | ------------------SQL ERROR: Traceback (most recent call last):
+  File "/Users/wanghu/Desktop/github/FastapiApscheduler/apps/dbdriver/mysql.py", line 315, in execute
+    relist = cur.execute(sql, data)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/dbutils/steady_db.py", line 606, in tough_method
+    result = method(*args, **kwargs)  # try to execute
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/cursors.py", line 148, in execute
+    result = self._query(query)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/cursors.py", line 310, in _query
+    conn.query(q)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 775, in _read_query_result
+    result.read()
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1146, "Table 'test_001.aps_task_log' doesn't exist")
+
+13:08:15.775 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:08:15.775 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_book, start_book (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 13:28:14 CST)
+13:08:15.777 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_movie', 'next_run_time': 1665036494.129048, 'job_state': b'\x80\x05\x95\xf4\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_movie\x94\x8c\x04func\x94\x8c(apps.tasks.sources.new_movie:start_movie\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0e\x08\x0e\x01\xf8\x18\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_movie\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0e\x08\x0e\x01\xf8\x18\x94h\x1b\x86\x94R\x94u.'}
+13:08:15.911 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_movie' ; data: None
+13:08:15.968 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_movie', 'type': 0, 'job_info': '{"version": 1, "id": "new_movie", "func": "apps.tasks.sources.new_movie:start_movie", "executor": "default", "args": [], "kwargs": {}, "name": "start_movie", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 14:08:14.129048+08:00"}'}; t_index: None
+13:08:16.014 | ERROR | apps.dbdriver.mysql.execute| 319 | ------------------SQL ERROR: Traceback (most recent call last):
+  File "/Users/wanghu/Desktop/github/FastapiApscheduler/apps/dbdriver/mysql.py", line 315, in execute
+    relist = cur.execute(sql, data)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/dbutils/steady_db.py", line 606, in tough_method
+    result = method(*args, **kwargs)  # try to execute
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/cursors.py", line 148, in execute
+    result = self._query(query)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/cursors.py", line 310, in _query
+    conn.query(q)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 775, in _read_query_result
+    result.read()
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1146, "Table 'test_001.aps_task_log' doesn't exist")
+
+13:08:16.014 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:08:16.014 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_movie, start_movie (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 14:08:14 CST)
+13:08:16.016 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_music', 'next_run_time': 1665040094.129049, 'job_state': b'\x80\x05\x95\xf8\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_music\x94\x8c\x04func\x94\x8c,apps.tasks.sources.hot_top_music:start_music\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0f\x08\x0e\x01\xf8\x19\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_music\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0f\x08\x0e\x01\xf8\x19\x94h\x1b\x86\x94R\x94u.'}
+13:08:16.149 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_music' ; data: None
+13:08:16.206 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_music', 'type': 0, 'job_info': '{"version": 1, "id": "new_music", "func": "apps.tasks.sources.hot_top_music:start_music", "executor": "default", "args": [], "kwargs": {}, "name": "start_music", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 15:08:14.129049+08:00"}'}; t_index: None
+13:08:16.252 | ERROR | apps.dbdriver.mysql.execute| 319 | ------------------SQL ERROR: Traceback (most recent call last):
+  File "/Users/wanghu/Desktop/github/FastapiApscheduler/apps/dbdriver/mysql.py", line 315, in execute
+    relist = cur.execute(sql, data)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/dbutils/steady_db.py", line 606, in tough_method
+    result = method(*args, **kwargs)  # try to execute
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/cursors.py", line 148, in execute
+    result = self._query(query)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/cursors.py", line 310, in _query
+    conn.query(q)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 775, in _read_query_result
+    result.read()
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1146, "Table 'test_001.aps_task_log' doesn't exist")
+
+13:08:16.252 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:08:16.252 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_music, start_music (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 15:08:14 CST)
+13:08:16.276 | INFO | main.startup| 64 | ********************  START:2022-10-06 13:08:16 ********************
+13:08:16.276 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:08:16.385 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665032896.276379 ; data: None
+13:08:16.440 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:08:16.583 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:08:16.583 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:08:16.693 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665032896.583516 ; data: None
+13:08:16.747 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:08:16.892 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:08:16.892 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:08:17.002 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665032896.892977 ; data: None
+13:08:17.056 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:08:17.200 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:08:17.201 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:08:17.327 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665032897.201254 ; data: None
+13:08:17.382 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:08:17.536 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:12:12.464 | INFO | main.shutdown| 92 | 关闭数据库连接池 default
+13:12:12.464 | INFO | main.shutdown| 97 | 关闭Redis连接池
+13:12:12.464 | INFO | main.shutdown| 99 | 关闭redis连接池:11
+13:12:12.464 | INFO | main.shutdown| 103 | 关闭sync_redis连接池: 11
+13:12:12.465 | INFO | main.shutdown| 109 | *********  END:2022-10-06 13:12:12 *********
+13:12:16.318 | INFO | apps.dbdriver.mysql.connect_pool| 41 | 连接异步数据库:121.4.108.200, -- test_001
+13:12:16.507 | INFO | apps.dbdriver.redis.redis_connect_pool| 35 | 连接Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:12:16.509 | INFO | apps.dbdriver.redis.redis_connect_pool| 77 | 连接Sync_Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:12:16.620 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: 
+                    create table if not exists source_task(
+                      `id` varchar(191) NOT NULL,
+                      `next_run_time` double DEFAULT NULL,
+                      `job_state` blob NOT NULL,
+                      PRIMARY KEY (`id`),
+                      KEY `ix_api_job_next_run_time` (`next_run_time`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+                 ; data: None
+13:12:16.706 | INFO | apscheduler.schedulers.base.start| 166 | Scheduler started
+13:12:16.707 | INFO | apps.core.ini_scheduler.init_scheduler| 102 | apps is running...
+13:12:16.707 | INFO | main.startup| 58 | 开始加载 静态任务
+13:12:16.707 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:              CREATE TABLE IF NOT EXISTS `task_log` (               `id` bigint(20) NOT NULL AUTO_INCREMENT,               `job_id` varchar(191) COLLATE utf8mb4_general_ci NOT NULL,               `job_info` json DEFAULT NULL,               `type` tinyint(3) DEFAULT NULL COMMENT '1 删除｜0添加或修改｜ 错误 4',               `creamt_time` datetime DEFAULT CURRENT_TIMESTAMP,               PRIMARY KEY (`id`),               KEY `task_log_job_id_idx` (`job_id`) USING BTREE             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;         ; data: None; t_index: None
+13:12:16.870 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_book', 'next_run_time': 1665034335.536342, 'job_state': b'\x80\x05\x95\xf0\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\x08new_book\x94\x8c\x04func\x94\x8c&apps.tasks.sources.new_book:start_book\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\r \x0f\x08/\x16\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\nstart_book\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\r \x0f\x08/\x16\x94h\x1b\x86\x94R\x94u.'}
+13:12:16.934 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_book' for key 'source_task.PRIMARY'")
+13:12:16.934 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_book' ; data: {'next_run_time': 1665034335.536342, 'job_state': b'\x80\x05\x95\xf0\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\x08new_book\x94\x8c\x04func\x94\x8c&apps.tasks.sources.new_book:start_book\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\r \x0f\x08/\x16\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\nstart_book\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\r \x0f\x08/\x16\x94h\x1b\x86\x94R\x94u.'}
+13:12:17.048 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_book' ; data: None
+13:12:17.093 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_book', 'type': 0, 'job_info': '{"version": 1, "id": "new_book", "func": "apps.tasks.sources.new_book:start_book", "executor": "default", "args": [], "kwargs": {}, "name": "start_book", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 13:32:15.536342+08:00"}'}; t_index: None
+13:12:17.149 | ERROR | apps.dbdriver.mysql.execute| 319 | ------------------SQL ERROR: Traceback (most recent call last):
+  File "/Users/wanghu/Desktop/github/FastapiApscheduler/apps/dbdriver/mysql.py", line 315, in execute
+    relist = cur.execute(sql, data)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/dbutils/steady_db.py", line 606, in tough_method
+    result = method(*args, **kwargs)  # try to execute
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/cursors.py", line 148, in execute
+    result = self._query(query)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/cursors.py", line 310, in _query
+    conn.query(q)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 775, in _read_query_result
+    result.read()
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1146, "Table 'test_001.aps_task_log' doesn't exist")
+
+13:12:17.149 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:12:17.150 | INFO | apps.core.ini_scheduler.add_config_job| 109 | 添加任务： new_book, start_book (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 13:32:15 CST)
+13:12:17.151 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_movie', 'next_run_time': 1665036735.536344, 'job_state': b'\x80\x05\x95\xf4\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_movie\x94\x8c\x04func\x94\x8c(apps.tasks.sources.new_movie:start_movie\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0e\x0c\x0f\x08/\x18\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_movie\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0e\x0c\x0f\x08/\x18\x94h\x1b\x86\x94R\x94u.'}
+13:12:17.192 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_movie' for key 'source_task.PRIMARY'")
+13:12:17.193 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_movie' ; data: {'next_run_time': 1665036735.536344, 'job_state': b'\x80\x05\x95\xf4\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_movie\x94\x8c\x04func\x94\x8c(apps.tasks.sources.new_movie:start_movie\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0e\x0c\x0f\x08/\x18\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_movie\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0e\x0c\x0f\x08/\x18\x94h\x1b\x86\x94R\x94u.'}
+13:12:17.320 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_movie' ; data: None
+13:12:17.359 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_movie', 'type': 0, 'job_info': '{"version": 1, "id": "new_movie", "func": "apps.tasks.sources.new_movie:start_movie", "executor": "default", "args": [], "kwargs": {}, "name": "start_movie", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 14:12:15.536344+08:00"}'}; t_index: None
+13:12:17.408 | ERROR | apps.dbdriver.mysql.execute| 319 | ------------------SQL ERROR: Traceback (most recent call last):
+  File "/Users/wanghu/Desktop/github/FastapiApscheduler/apps/dbdriver/mysql.py", line 315, in execute
+    relist = cur.execute(sql, data)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/dbutils/steady_db.py", line 606, in tough_method
+    result = method(*args, **kwargs)  # try to execute
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/cursors.py", line 148, in execute
+    result = self._query(query)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/cursors.py", line 310, in _query
+    conn.query(q)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 775, in _read_query_result
+    result.read()
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1146, "Table 'test_001.aps_task_log' doesn't exist")
+
+13:12:17.408 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:12:17.409 | INFO | apps.core.ini_scheduler.add_config_job| 109 | 添加任务： new_movie, start_movie (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 14:12:15 CST)
+13:12:17.410 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_music', 'next_run_time': 1665040335.536346, 'job_state': b'\x80\x05\x95\xf8\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_music\x94\x8c\x04func\x94\x8c,apps.tasks.sources.hot_top_music:start_music\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0f\x0c\x0f\x08/\x1a\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_music\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0f\x0c\x0f\x08/\x1a\x94h\x1b\x86\x94R\x94u.'}
+13:12:17.453 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_music' for key 'source_task.PRIMARY'")
+13:12:17.454 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_music' ; data: {'next_run_time': 1665040335.536346, 'job_state': b'\x80\x05\x95\xf8\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_music\x94\x8c\x04func\x94\x8c,apps.tasks.sources.hot_top_music:start_music\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0f\x0c\x0f\x08/\x1a\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_music\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0f\x0c\x0f\x08/\x1a\x94h\x1b\x86\x94R\x94u.'}
+13:12:17.564 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_music' ; data: None
+13:12:17.608 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_music', 'type': 0, 'job_info': '{"version": 1, "id": "new_music", "func": "apps.tasks.sources.hot_top_music:start_music", "executor": "default", "args": [], "kwargs": {}, "name": "start_music", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 15:12:15.536346+08:00"}'}; t_index: None
+13:12:17.669 | ERROR | apps.dbdriver.mysql.execute| 319 | ------------------SQL ERROR: Traceback (most recent call last):
+  File "/Users/wanghu/Desktop/github/FastapiApscheduler/apps/dbdriver/mysql.py", line 315, in execute
+    relist = cur.execute(sql, data)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/dbutils/steady_db.py", line 606, in tough_method
+    result = method(*args, **kwargs)  # try to execute
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/cursors.py", line 148, in execute
+    result = self._query(query)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/cursors.py", line 310, in _query
+    conn.query(q)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 775, in _read_query_result
+    result.read()
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/Users/wanghu/Desktop/MY_PROJECT/ENV/fastapi-apscheduler/lib/python3.8/site-packages/pymysql/err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1146, "Table 'test_001.aps_task_log' doesn't exist")
+
+13:12:17.669 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:12:17.670 | INFO | apps.core.ini_scheduler.add_config_job| 109 | 添加任务： new_music, start_music (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 15:12:15 CST)
+13:12:17.703 | INFO | main.startup| 64 | ********************  START:2022-10-06 13:12:17 ********************
+13:12:17.703 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:12:17.803 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033137.703621 ; data: None
+13:12:17.841 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:12:17.976 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:12:17.977 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:12:18.078 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033137.978554 ; data: None
+13:12:18.117 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:12:18.252 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:12:18.253 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:12:18.354 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033138.254172 ; data: None
+13:12:18.392 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:12:18.526 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:12:18.527 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:12:18.630 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033138.527574 ; data: None
+13:12:18.669 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:12:18.804 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:12:29.025 | INFO | main.shutdown| 92 | 关闭数据库连接池 default
+13:12:29.026 | INFO | main.shutdown| 97 | 关闭Redis连接池
+13:12:29.026 | INFO | main.shutdown| 99 | 关闭redis连接池:11
+13:12:29.026 | INFO | main.shutdown| 103 | 关闭sync_redis连接池: 11
+13:12:29.026 | INFO | main.shutdown| 109 | *********  END:2022-10-06 13:12:29 *********
+13:13:22.781 | INFO | apps.dbdriver.mysql.connect_pool| 41 | 连接异步数据库:121.4.108.200, -- test_001
+13:13:22.951 | INFO | apps.dbdriver.redis.redis_connect_pool| 35 | 连接Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:13:22.952 | INFO | apps.dbdriver.redis.redis_connect_pool| 77 | 连接Sync_Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:13:23.109 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: 
+                    create table if not exists source_task(
+                      `id` varchar(191) NOT NULL,
+                      `next_run_time` double DEFAULT NULL,
+                      `job_state` blob NOT NULL,
+                      PRIMARY KEY (`id`),
+                      KEY `ix_api_job_next_run_time` (`next_run_time`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+                 ; data: None
+13:13:23.212 | INFO | apscheduler.schedulers.base.start| 166 | Scheduler started
+13:13:23.212 | INFO | apps.core.ini_scheduler.init_scheduler| 101 | apps is running...
+13:13:23.213 | INFO | main.startup| 58 | 开始加载 静态任务
+13:13:23.213 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:              CREATE TABLE IF NOT EXISTS `aps_task_log` (               `id` bigint(20) NOT NULL AUTO_INCREMENT,               `job_id` varchar(191) COLLATE utf8mb4_general_ci NOT NULL,               `job_info` json DEFAULT NULL,               `type` tinyint(3) DEFAULT NULL COMMENT '1 删除｜0添加或修改｜ 错误 4',               `creamt_time` datetime DEFAULT CURRENT_TIMESTAMP,               PRIMARY KEY (`id`),               KEY `task_log_job_id_idx` (`job_id`) USING BTREE             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;         ; data: None; t_index: None
+13:13:23.387 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_book', 'next_run_time': 1665034402.117516, 'job_state': b'\x80\x05\x95\xf0\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\x08new_book\x94\x8c\x04func\x94\x8c&apps.tasks.sources.new_book:start_book\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\r!\x16\x01\xcb\x0c\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\nstart_book\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\r!\x16\x01\xcb\x0c\x94h\x1b\x86\x94R\x94u.'}
+13:13:23.512 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_book' ; data: None
+13:13:23.564 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_book', 'type': 0, 'job_info': '{"version": 1, "id": "new_book", "func": "apps.tasks.sources.new_book:start_book", "executor": "default", "args": [], "kwargs": {}, "name": "start_book", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 13:33:22.117516+08:00"}'}; t_index: None
+13:13:23.637 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:13:23.639 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_book, start_book (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 13:33:22 CST)
+13:13:23.641 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_movie', 'next_run_time': 1665036802.117518, 'job_state': b'\x80\x05\x95\xf4\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_movie\x94\x8c\x04func\x94\x8c(apps.tasks.sources.new_movie:start_movie\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0e\r\x16\x01\xcb\x0e\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_movie\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0e\r\x16\x01\xcb\x0e\x94h\x1b\x86\x94R\x94u.'}
+13:13:23.773 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_movie' ; data: None
+13:13:23.824 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_movie', 'type': 0, 'job_info': '{"version": 1, "id": "new_movie", "func": "apps.tasks.sources.new_movie:start_movie", "executor": "default", "args": [], "kwargs": {}, "name": "start_movie", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 14:13:22.117518+08:00"}'}; t_index: None
+13:13:23.909 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:13:23.910 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_movie, start_movie (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 14:13:22 CST)
+13:13:23.912 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_music', 'next_run_time': 1665040402.11752, 'job_state': b'\x80\x05\x95\xf8\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_music\x94\x8c\x04func\x94\x8c,apps.tasks.sources.hot_top_music:start_music\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0f\r\x16\x01\xcb\x10\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_music\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0f\r\x16\x01\xcb\x10\x94h\x1b\x86\x94R\x94u.'}
+13:13:24.037 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_music' ; data: None
+13:13:24.090 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_music', 'type': 0, 'job_info': '{"version": 1, "id": "new_music", "func": "apps.tasks.sources.hot_top_music:start_music", "executor": "default", "args": [], "kwargs": {}, "name": "start_music", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 15:13:22.117520+08:00"}'}; t_index: None
+13:13:24.158 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:13:24.159 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_music, start_music (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 15:13:22 CST)
+13:13:24.179 | INFO | main.startup| 64 | ********************  START:2022-10-06 13:13:24 ********************
+13:13:24.179 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:13:24.276 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033204.179457 ; data: None
+13:13:24.326 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:13:24.379 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:13:24.379 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:13:24.475 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033204.379569 ; data: None
+13:13:24.529 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:13:24.586 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:13:24.586 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:13:24.678 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033204.586751 ; data: None
+13:13:24.730 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:13:24.782 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:13:24.783 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:13:24.876 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033204.783228 ; data: None
+13:13:24.928 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:13:24.978 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:14:03.285 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+         ; data: None
+13:16:38.897 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_movie' ; data: None
+13:17:51.915 | INFO | main.shutdown| 92 | 关闭数据库连接池 default
+13:17:51.916 | INFO | main.shutdown| 97 | 关闭Redis连接池
+13:17:51.916 | INFO | main.shutdown| 99 | 关闭redis连接池:11
+13:17:51.916 | INFO | main.shutdown| 103 | 关闭sync_redis连接池: 11
+13:17:51.916 | INFO | main.shutdown| 109 | *********  END:2022-10-06 13:17:51 *********
+13:17:52.848 | INFO | apps.dbdriver.mysql.connect_pool| 41 | 连接异步数据库:121.4.108.200, -- test_001
+13:17:53.016 | INFO | apps.dbdriver.redis.redis_connect_pool| 35 | 连接Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:17:53.016 | INFO | apps.dbdriver.redis.redis_connect_pool| 77 | 连接Sync_Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:17:53.098 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: 
+                    create table if not exists source_task(
+                      `id` varchar(191) NOT NULL,
+                      `next_run_time` double DEFAULT NULL,
+                      `job_state` blob NOT NULL,
+                      PRIMARY KEY (`id`),
+                      KEY `ix_api_job_next_run_time` (`next_run_time`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+                 ; data: None
+13:17:53.147 | INFO | apscheduler.schedulers.base.start| 166 | Scheduler started
+13:17:53.148 | INFO | apps.core.ini_scheduler.init_scheduler| 101 | apps is running...
+13:17:53.148 | INFO | main.startup| 58 | 开始加载 静态任务
+13:17:53.148 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:              CREATE TABLE IF NOT EXISTS `aps_task_log` (               `id` bigint(20) NOT NULL AUTO_INCREMENT,               `job_id` varchar(191) COLLATE utf8mb4_general_ci NOT NULL,               `job_info` json DEFAULT NULL,               `type` tinyint(3) DEFAULT NULL COMMENT '1 删除｜0添加或修改｜ 错误 4',               `creamt_time` datetime DEFAULT CURRENT_TIMESTAMP,               PRIMARY KEY (`id`),               KEY `task_log_job_id_idx` (`job_id`) USING BTREE             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;         ; data: None; t_index: None
+13:17:53.231 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_book', 'next_run_time': 1665034672.270068, 'job_state': b'\x80\x05\x95\xf0\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\x08new_book\x94\x8c\x04func\x94\x8c&apps.tasks.sources.new_book:start_book\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\r%4\x04\x1e\xf4\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\nstart_book\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\r%4\x04\x1e\xf4\x94h\x1b\x86\x94R\x94u.'}
+13:17:53.279 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_book' for key 'source_task.PRIMARY'")
+13:17:53.279 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_book' ; data: {'next_run_time': 1665034672.270068, 'job_state': b'\x80\x05\x95\xf0\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\x08new_book\x94\x8c\x04func\x94\x8c&apps.tasks.sources.new_book:start_book\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\r%4\x04\x1e\xf4\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\nstart_book\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\r%4\x04\x1e\xf4\x94h\x1b\x86\x94R\x94u.'}
+13:17:53.406 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_book' ; data: None
+13:17:53.450 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_book', 'type': 0, 'job_info': '{"version": 1, "id": "new_book", "func": "apps.tasks.sources.new_book:start_book", "executor": "default", "args": [], "kwargs": {}, "name": "start_book", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 13:37:52.270068+08:00"}'}; t_index: None
+13:17:53.507 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:17:53.508 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_book, start_book (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 13:37:52 CST)
+13:17:53.511 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_movie', 'next_run_time': 1665037072.27007, 'job_state': b'\x80\x05\x95\xf4\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_movie\x94\x8c\x04func\x94\x8c(apps.tasks.sources.new_movie:start_movie\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0e\x114\x04\x1e\xf6\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_movie\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0e\x114\x04\x1e\xf6\x94h\x1b\x86\x94R\x94u.'}
+13:17:53.558 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_movie' for key 'source_task.PRIMARY'")
+13:17:53.559 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_movie' ; data: {'next_run_time': 1665037072.27007, 'job_state': b'\x80\x05\x95\xf4\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_movie\x94\x8c\x04func\x94\x8c(apps.tasks.sources.new_movie:start_movie\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0e\x114\x04\x1e\xf6\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_movie\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0e\x114\x04\x1e\xf6\x94h\x1b\x86\x94R\x94u.'}
+13:17:53.670 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_movie' ; data: None
+13:17:53.719 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_movie', 'type': 0, 'job_info': '{"version": 1, "id": "new_movie", "func": "apps.tasks.sources.new_movie:start_movie", "executor": "default", "args": [], "kwargs": {}, "name": "start_movie", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 14:17:52.270070+08:00"}'}; t_index: None
+13:17:53.773 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:17:53.774 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_movie, start_movie (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 14:17:52 CST)
+13:17:53.775 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_music', 'next_run_time': 1665040672.270072, 'job_state': b'\x80\x05\x95\xf8\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_music\x94\x8c\x04func\x94\x8c,apps.tasks.sources.hot_top_music:start_music\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0f\x114\x04\x1e\xf8\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_music\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0f\x114\x04\x1e\xf8\x94h\x1b\x86\x94R\x94u.'}
+13:17:53.821 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_music' for key 'source_task.PRIMARY'")
+13:17:53.821 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_music' ; data: {'next_run_time': 1665040672.270072, 'job_state': b'\x80\x05\x95\xf8\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_music\x94\x8c\x04func\x94\x8c,apps.tasks.sources.hot_top_music:start_music\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0f\x114\x04\x1e\xf8\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_music\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0f\x114\x04\x1e\xf8\x94h\x1b\x86\x94R\x94u.'}
+13:17:53.937 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_music' ; data: None
+13:17:53.982 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_music', 'type': 0, 'job_info': '{"version": 1, "id": "new_music", "func": "apps.tasks.sources.hot_top_music:start_music", "executor": "default", "args": [], "kwargs": {}, "name": "start_music", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 15:17:52.270072+08:00"}'}; t_index: None
+13:17:54.039 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:17:54.040 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_music, start_music (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 15:17:52 CST)
+13:17:54.061 | INFO | main.startup| 64 | ********************  START:2022-10-06 13:17:54 ********************
+13:17:54.061 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:17:54.145 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033474.061862 ; data: None
+13:17:54.191 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:17:54.235 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:17:54.236 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:17:54.320 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033474.236228 ; data: None
+13:17:54.368 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:17:54.412 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:17:54.412 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:17:54.505 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033474.413095 ; data: None
+13:17:54.552 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:17:54.596 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:17:54.596 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:17:54.682 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033474.597036 ; data: None
+13:17:54.726 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:17:54.770 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:18:21.973 | INFO | main.shutdown| 92 | 关闭数据库连接池 default
+13:18:21.974 | INFO | main.shutdown| 97 | 关闭Redis连接池
+13:18:21.974 | INFO | main.shutdown| 99 | 关闭redis连接池:11
+13:18:21.974 | INFO | main.shutdown| 103 | 关闭sync_redis连接池: 11
+13:18:21.974 | INFO | main.shutdown| 109 | *********  END:2022-10-06 13:18:21 *********
+13:18:22.917 | INFO | apps.dbdriver.mysql.connect_pool| 41 | 连接异步数据库:121.4.108.200, -- test_001
+13:18:23.105 | INFO | apps.dbdriver.redis.redis_connect_pool| 35 | 连接Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:18:23.105 | INFO | apps.dbdriver.redis.redis_connect_pool| 77 | 连接Sync_Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:18:23.193 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: 
+                    create table if not exists source_task(
+                      `id` varchar(191) NOT NULL,
+                      `next_run_time` double DEFAULT NULL,
+                      `job_state` blob NOT NULL,
+                      PRIMARY KEY (`id`),
+                      KEY `ix_api_job_next_run_time` (`next_run_time`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+                 ; data: None
+13:18:23.254 | INFO | apscheduler.schedulers.base.start| 166 | Scheduler started
+13:18:23.255 | INFO | apps.core.ini_scheduler.init_scheduler| 101 | apps is running...
+13:18:23.255 | INFO | main.startup| 58 | 开始加载 静态任务
+13:18:23.255 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:              CREATE TABLE IF NOT EXISTS `aps_task_log` (               `id` bigint(20) NOT NULL AUTO_INCREMENT,               `job_id` varchar(191) COLLATE utf8mb4_general_ci NOT NULL,               `job_info` json DEFAULT NULL,               `type` tinyint(3) DEFAULT NULL COMMENT '1 删除｜0添加或修改｜ 错误 4',               `creamt_time` datetime DEFAULT CURRENT_TIMESTAMP,               PRIMARY KEY (`id`),               KEY `task_log_job_id_idx` (`job_id`) USING BTREE             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;         ; data: None; t_index: None
+13:18:23.345 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_book', 'next_run_time': 1665034702.329072, 'job_state': b'\x80\x05\x95\xf0\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\x08new_book\x94\x8c\x04func\x94\x8c&apps.tasks.sources.new_book:start_book\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\r&\x16\x05\x05p\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\nstart_book\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\r&\x16\x05\x05p\x94h\x1b\x86\x94R\x94u.'}
+13:18:23.388 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_book' for key 'source_task.PRIMARY'")
+13:18:23.388 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_book' ; data: {'next_run_time': 1665034702.329072, 'job_state': b'\x80\x05\x95\xf0\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\x08new_book\x94\x8c\x04func\x94\x8c&apps.tasks.sources.new_book:start_book\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\r&\x16\x05\x05p\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\nstart_book\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\r&\x16\x05\x05p\x94h\x1b\x86\x94R\x94u.'}
+13:18:23.527 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_book' ; data: None
+13:18:23.570 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_book', 'type': 0, 'job_info': '{"version": 1, "id": "new_book", "func": "apps.tasks.sources.new_book:start_book", "executor": "default", "args": [], "kwargs": {}, "name": "start_book", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 13:38:22.329072+08:00"}'}; t_index: None
+13:18:23.643 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:18:23.644 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_book, start_book (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 13:38:22 CST)
+13:18:23.646 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_movie', 'next_run_time': 1665037102.329074, 'job_state': b'\x80\x05\x95\xf4\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_movie\x94\x8c\x04func\x94\x8c(apps.tasks.sources.new_movie:start_movie\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0e\x12\x16\x05\x05r\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_movie\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0e\x12\x16\x05\x05r\x94h\x1b\x86\x94R\x94u.'}
+13:18:23.698 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_movie' for key 'source_task.PRIMARY'")
+13:18:23.699 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_movie' ; data: {'next_run_time': 1665037102.329074, 'job_state': b'\x80\x05\x95\xf4\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_movie\x94\x8c\x04func\x94\x8c(apps.tasks.sources.new_movie:start_movie\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0e\x12\x16\x05\x05r\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_movie\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0e\x12\x16\x05\x05r\x94h\x1b\x86\x94R\x94u.'}
+13:18:23.811 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_movie' ; data: None
+13:18:23.860 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_movie', 'type': 0, 'job_info': '{"version": 1, "id": "new_movie", "func": "apps.tasks.sources.new_movie:start_movie", "executor": "default", "args": [], "kwargs": {}, "name": "start_movie", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 14:18:22.329074+08:00"}'}; t_index: None
+13:18:23.928 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:18:23.929 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_movie, start_movie (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 14:18:22 CST)
+13:18:23.932 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_music', 'next_run_time': 1665040702.329076, 'job_state': b'\x80\x05\x95\xf8\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_music\x94\x8c\x04func\x94\x8c,apps.tasks.sources.hot_top_music:start_music\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0f\x12\x16\x05\x05t\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_music\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0f\x12\x16\x05\x05t\x94h\x1b\x86\x94R\x94u.'}
+13:18:23.978 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_music' for key 'source_task.PRIMARY'")
+13:18:23.979 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_music' ; data: {'next_run_time': 1665040702.329076, 'job_state': b'\x80\x05\x95\xf8\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_music\x94\x8c\x04func\x94\x8c,apps.tasks.sources.hot_top_music:start_music\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0f\x12\x16\x05\x05t\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_music\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0f\x12\x16\x05\x05t\x94h\x1b\x86\x94R\x94u.'}
+13:18:24.109 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_music' ; data: None
+13:18:24.152 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_music', 'type': 0, 'job_info': '{"version": 1, "id": "new_music", "func": "apps.tasks.sources.hot_top_music:start_music", "executor": "default", "args": [], "kwargs": {}, "name": "start_music", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 15:18:22.329076+08:00"}'}; t_index: None
+13:18:24.213 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:18:24.213 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_music, start_music (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 15:18:22 CST)
+13:18:24.237 | INFO | main.startup| 64 | ********************  START:2022-10-06 13:18:24 ********************
+13:18:24.237 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:18:24.336 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033504.237377 ; data: None
+13:18:24.387 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:18:24.431 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:18:24.431 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:18:24.534 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033504.43169 ; data: None
+13:18:24.584 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:18:24.627 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:18:24.627 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:18:24.726 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033504.627897 ; data: None
+13:18:24.776 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:18:24.820 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:18:24.821 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:18:24.924 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033504.822135 ; data: None
+13:18:24.975 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:18:25.020 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:19:15.586 | INFO | main.shutdown| 92 | 关闭数据库连接池 default
+13:19:15.587 | INFO | main.shutdown| 97 | 关闭Redis连接池
+13:19:15.587 | INFO | main.shutdown| 99 | 关闭redis连接池:11
+13:19:15.587 | INFO | main.shutdown| 103 | 关闭sync_redis连接池: 11
+13:19:15.587 | INFO | main.shutdown| 109 | *********  END:2022-10-06 13:19:15 *********
+13:19:16.592 | INFO | apps.dbdriver.mysql.connect_pool| 41 | 连接异步数据库:121.4.108.200, -- test_001
+13:19:16.783 | INFO | apps.dbdriver.redis.redis_connect_pool| 35 | 连接Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:19:16.784 | INFO | apps.dbdriver.redis.redis_connect_pool| 77 | 连接Sync_Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:19:16.890 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: 
+                    create table if not exists source_task(
+                      `id` varchar(191) NOT NULL,
+                      `next_run_time` double DEFAULT NULL,
+                      `job_state` blob NOT NULL,
+                      PRIMARY KEY (`id`),
+                      KEY `ix_api_job_next_run_time` (`next_run_time`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+                 ; data: None
+13:19:16.941 | INFO | apscheduler.schedulers.base.start| 166 | Scheduler started
+13:19:16.942 | INFO | apps.core.ini_scheduler.init_scheduler| 101 | apps is running...
+13:19:16.942 | INFO | main.startup| 58 | 开始加载 静态任务
+13:19:16.942 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:              CREATE TABLE IF NOT EXISTS `aps_task_log` (               `id` bigint(20) NOT NULL AUTO_INCREMENT,               `job_id` varchar(191) COLLATE utf8mb4_general_ci NOT NULL,               `job_info` json DEFAULT NULL,               `type` tinyint(3) DEFAULT NULL COMMENT '1 删除｜0添加或修改｜ 错误 4',               `creamt_time` datetime DEFAULT CURRENT_TIMESTAMP,               PRIMARY KEY (`id`),               KEY `task_log_job_id_idx` (`job_id`) USING BTREE             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;         ; data: None; t_index: None
+13:19:17.067 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_book', 'next_run_time': 1665034755.909279, 'job_state': b"\x80\x05\x95\xf0\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\x08new_book\x94\x8c\x04func\x94\x8c&apps.tasks.sources.new_book:start_book\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\r'\x0f\r\xdf\xdf\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\nstart_book\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\r'\x0f\r\xdf\xdf\x94h\x1b\x86\x94R\x94u."}
+13:19:17.113 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_book' for key 'source_task.PRIMARY'")
+13:19:17.113 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_book' ; data: {'next_run_time': 1665034755.909279, 'job_state': b"\x80\x05\x95\xf0\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\x08new_book\x94\x8c\x04func\x94\x8c&apps.tasks.sources.new_book:start_book\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\r'\x0f\r\xdf\xdf\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\nstart_book\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\r'\x0f\r\xdf\xdf\x94h\x1b\x86\x94R\x94u."}
+13:19:17.234 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_book' ; data: None
+13:19:17.280 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_book', 'type': 0, 'job_info': '{"version": 1, "id": "new_book", "func": "apps.tasks.sources.new_book:start_book", "executor": "default", "args": [], "kwargs": {}, "name": "start_book", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 13:39:15.909279+08:00"}'}; t_index: None
+13:19:17.354 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:19:17.354 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_book, start_book (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 13:39:15 CST)
+13:19:17.355 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_movie', 'next_run_time': 1665037155.909281, 'job_state': b'\x80\x05\x95\xf4\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_movie\x94\x8c\x04func\x94\x8c(apps.tasks.sources.new_movie:start_movie\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0e\x13\x0f\r\xdf\xe1\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_movie\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0e\x13\x0f\r\xdf\xe1\x94h\x1b\x86\x94R\x94u.'}
+13:19:17.401 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_movie' for key 'source_task.PRIMARY'")
+13:19:17.401 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_movie' ; data: {'next_run_time': 1665037155.909281, 'job_state': b'\x80\x05\x95\xf4\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_movie\x94\x8c\x04func\x94\x8c(apps.tasks.sources.new_movie:start_movie\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0e\x13\x0f\r\xdf\xe1\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_movie\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0e\x13\x0f\r\xdf\xe1\x94h\x1b\x86\x94R\x94u.'}
+13:19:17.534 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_movie' ; data: None
+13:19:17.581 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_movie', 'type': 0, 'job_info': '{"version": 1, "id": "new_movie", "func": "apps.tasks.sources.new_movie:start_movie", "executor": "default", "args": [], "kwargs": {}, "name": "start_movie", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 14:19:15.909281+08:00"}'}; t_index: None
+13:19:17.665 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:19:17.666 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_movie, start_movie (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 14:19:15 CST)
+13:19:17.668 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_music', 'next_run_time': 1665040755.909283, 'job_state': b'\x80\x05\x95\xf8\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_music\x94\x8c\x04func\x94\x8c,apps.tasks.sources.hot_top_music:start_music\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0f\x13\x0f\r\xdf\xe3\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_music\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0f\x13\x0f\r\xdf\xe3\x94h\x1b\x86\x94R\x94u.'}
+13:19:17.715 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_music' for key 'source_task.PRIMARY'")
+13:19:17.716 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_music' ; data: {'next_run_time': 1665040755.909283, 'job_state': b'\x80\x05\x95\xf8\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_music\x94\x8c\x04func\x94\x8c,apps.tasks.sources.hot_top_music:start_music\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0f\x13\x0f\r\xdf\xe3\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_music\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0f\x13\x0f\r\xdf\xe3\x94h\x1b\x86\x94R\x94u.'}
+13:19:17.851 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_music' ; data: None
+13:19:17.897 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_music', 'type': 0, 'job_info': '{"version": 1, "id": "new_music", "func": "apps.tasks.sources.hot_top_music:start_music", "executor": "default", "args": [], "kwargs": {}, "name": "start_music", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 15:19:15.909283+08:00"}'}; t_index: None
+13:19:17.970 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:19:17.970 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_music, start_music (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 15:19:15 CST)
+13:19:17.991 | INFO | main.startup| 64 | ********************  START:2022-10-06 13:19:17 ********************
+13:19:17.991 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:19:18.097 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033557.992067 ; data: None
+13:19:18.144 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:19:18.189 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:19:18.189 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:19:18.292 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033558.189578 ; data: None
+13:19:18.337 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:19:18.381 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:19:18.382 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:19:18.487 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033558.382268 ; data: None
+13:19:18.534 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:19:18.580 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:19:18.580 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:19:18.686 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033558.58122 ; data: None
+13:19:18.733 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:19:18.779 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:20:28.994 | INFO | main.shutdown| 92 | 关闭数据库连接池 default
+13:20:28.994 | INFO | main.shutdown| 97 | 关闭Redis连接池
+13:20:28.994 | INFO | main.shutdown| 99 | 关闭redis连接池:11
+13:20:28.994 | INFO | main.shutdown| 103 | 关闭sync_redis连接池: 11
+13:20:28.994 | INFO | main.shutdown| 109 | *********  END:2022-10-06 13:20:28 *********
+13:20:30.045 | INFO | apps.dbdriver.mysql.connect_pool| 41 | 连接异步数据库:121.4.108.200, -- test_001
+13:20:30.209 | INFO | apps.dbdriver.redis.redis_connect_pool| 35 | 连接Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:20:30.210 | INFO | apps.dbdriver.redis.redis_connect_pool| 77 | 连接Sync_Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:20:30.316 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: 
+                    create table if not exists source_task(
+                      `id` varchar(191) NOT NULL,
+                      `next_run_time` double DEFAULT NULL,
+                      `job_state` blob NOT NULL,
+                      PRIMARY KEY (`id`),
+                      KEY `ix_api_job_next_run_time` (`next_run_time`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+                 ; data: None
+13:20:30.376 | INFO | apscheduler.schedulers.base.start| 166 | Scheduler started
+13:20:30.376 | INFO | apps.core.ini_scheduler.init_scheduler| 101 | apps is running...
+13:20:30.377 | INFO | main.startup| 58 | 开始加载 静态任务
+13:20:30.377 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:              CREATE TABLE IF NOT EXISTS `aps_task_log` (               `id` bigint(20) NOT NULL AUTO_INCREMENT,               `job_id` varchar(191) COLLATE utf8mb4_general_ci NOT NULL,               `job_info` json DEFAULT NULL,               `type` tinyint(3) DEFAULT NULL COMMENT '1 删除｜0添加或修改｜ 错误 4',               `creamt_time` datetime DEFAULT CURRENT_TIMESTAMP,               PRIMARY KEY (`id`),               KEY `task_log_job_id_idx` (`job_id`) USING BTREE             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;         ; data: None; t_index: None
+13:20:30.489 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_book', 'next_run_time': 1665034829.370089, 'job_state': b'\x80\x05\x95\xf0\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\x08new_book\x94\x8c\x04func\x94\x8c&apps.tasks.sources.new_book:start_book\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\r(\x1d\x05\xa5\xa9\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\nstart_book\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\r(\x1d\x05\xa5\xa9\x94h\x1b\x86\x94R\x94u.'}
+13:20:30.537 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_book' for key 'source_task.PRIMARY'")
+13:20:30.538 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_book' ; data: {'next_run_time': 1665034829.370089, 'job_state': b'\x80\x05\x95\xf0\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\x08new_book\x94\x8c\x04func\x94\x8c&apps.tasks.sources.new_book:start_book\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\r(\x1d\x05\xa5\xa9\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\nstart_book\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\r(\x1d\x05\xa5\xa9\x94h\x1b\x86\x94R\x94u.'}
+13:20:30.669 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_book' ; data: None
+13:20:30.719 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_book', 'type': 0, 'job_info': '{"version": 1, "id": "new_book", "func": "apps.tasks.sources.new_book:start_book", "executor": "default", "args": [], "kwargs": {}, "name": "start_book", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 13:40:29.370089+08:00"}'}; t_index: None
+13:20:30.803 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:20:30.805 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_book, start_book (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 13:40:29 CST)
+13:20:30.807 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_movie', 'next_run_time': 1665037229.370093, 'job_state': b'\x80\x05\x95\xf4\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_movie\x94\x8c\x04func\x94\x8c(apps.tasks.sources.new_movie:start_movie\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0e\x14\x1d\x05\xa5\xad\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_movie\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0e\x14\x1d\x05\xa5\xad\x94h\x1b\x86\x94R\x94u.'}
+13:20:30.859 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_movie' for key 'source_task.PRIMARY'")
+13:20:30.860 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_movie' ; data: {'next_run_time': 1665037229.370093, 'job_state': b'\x80\x05\x95\xf4\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_movie\x94\x8c\x04func\x94\x8c(apps.tasks.sources.new_movie:start_movie\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0e\x14\x1d\x05\xa5\xad\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_movie\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0e\x14\x1d\x05\xa5\xad\x94h\x1b\x86\x94R\x94u.'}
+13:20:30.983 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_movie' ; data: None
+13:20:31.034 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_movie', 'type': 0, 'job_info': '{"version": 1, "id": "new_movie", "func": "apps.tasks.sources.new_movie:start_movie", "executor": "default", "args": [], "kwargs": {}, "name": "start_movie", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 14:20:29.370093+08:00"}'}; t_index: None
+13:20:31.118 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:20:31.119 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_movie, start_movie (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 14:20:29 CST)
+13:20:31.122 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_music', 'next_run_time': 1665040829.370094, 'job_state': b'\x80\x05\x95\xf8\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_music\x94\x8c\x04func\x94\x8c,apps.tasks.sources.hot_top_music:start_music\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0f\x14\x1d\x05\xa5\xae\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_music\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0f\x14\x1d\x05\xa5\xae\x94h\x1b\x86\x94R\x94u.'}
+13:20:31.170 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_music' for key 'source_task.PRIMARY'")
+13:20:31.171 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_music' ; data: {'next_run_time': 1665040829.370094, 'job_state': b'\x80\x05\x95\xf8\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_music\x94\x8c\x04func\x94\x8c,apps.tasks.sources.hot_top_music:start_music\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0f\x14\x1d\x05\xa5\xae\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_music\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0f\x14\x1d\x05\xa5\xae\x94h\x1b\x86\x94R\x94u.'}
+13:20:31.316 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_music' ; data: None
+13:20:31.366 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_music', 'type': 0, 'job_info': '{"version": 1, "id": "new_music", "func": "apps.tasks.sources.hot_top_music:start_music", "executor": "default", "args": [], "kwargs": {}, "name": "start_music", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 15:20:29.370094+08:00"}'}; t_index: None
+13:20:31.444 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:20:31.445 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_music, start_music (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 15:20:29 CST)
+13:20:31.493 | INFO | main.startup| 64 | ********************  START:2022-10-06 13:20:31 ********************
+13:20:31.494 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:20:31.599 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033631.494397 ; data: None
+13:20:31.652 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:20:31.702 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:20:31.703 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:20:31.810 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033631.704401 ; data: None
+13:20:31.864 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:20:31.915 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:20:31.916 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:20:32.022 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033631.917038 ; data: None
+13:20:32.075 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:20:32.126 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:20:32.126 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:20:32.233 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033632.127319 ; data: None
+13:20:32.283 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:20:32.331 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:22:15.107 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_music' ; data: None
+13:24:04.627 | INFO | main.shutdown| 92 | 关闭数据库连接池 default
+13:24:04.627 | INFO | main.shutdown| 97 | 关闭Redis连接池
+13:24:04.627 | INFO | main.shutdown| 99 | 关闭redis连接池:11
+13:24:04.627 | INFO | main.shutdown| 103 | 关闭sync_redis连接池: 11
+13:24:04.627 | INFO | main.shutdown| 109 | *********  END:2022-10-06 13:24:04 *********
+13:24:05.588 | INFO | apps.dbdriver.mysql.connect_pool| 41 | 连接异步数据库:121.4.108.200, -- test_001
+13:24:05.795 | INFO | apps.dbdriver.redis.redis_connect_pool| 35 | 连接Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:24:05.795 | INFO | apps.dbdriver.redis.redis_connect_pool| 77 | 连接Sync_Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:24:05.891 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: 
+                    create table if not exists source_task(
+                      `id` varchar(191) NOT NULL,
+                      `next_run_time` double DEFAULT NULL,
+                      `job_state` blob NOT NULL,
+                      PRIMARY KEY (`id`),
+                      KEY `ix_api_job_next_run_time` (`next_run_time`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+                 ; data: None
+13:24:05.938 | INFO | apscheduler.schedulers.base.start| 166 | Scheduler started
+13:24:05.939 | INFO | apps.core.ini_scheduler.init_scheduler| 101 | apps is running...
+13:24:05.939 | INFO | main.startup| 58 | 开始加载 静态任务
+13:24:05.939 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:              CREATE TABLE IF NOT EXISTS `aps_task_log` (               `id` bigint(20) NOT NULL AUTO_INCREMENT,               `job_id` varchar(191) COLLATE utf8mb4_general_ci NOT NULL,               `job_info` json DEFAULT NULL,               `type` tinyint(3) DEFAULT NULL COMMENT '1 删除｜0添加或修改｜ 错误 4',               `creamt_time` datetime DEFAULT CURRENT_TIMESTAMP,               PRIMARY KEY (`id`),               KEY `task_log_job_id_idx` (`job_id`) USING BTREE             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;         ; data: None; t_index: None
+13:24:06.029 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_book', 'next_run_time': 1665035044.975297, 'job_state': b'\x80\x05\x95\xf0\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\x08new_book\x94\x8c\x04func\x94\x8c&apps.tasks.sources.new_book:start_book\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\r,\x04\x0e\xe1\xc1\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\nstart_book\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\r,\x04\x0e\xe1\xc1\x94h\x1b\x86\x94R\x94u.'}
+13:24:06.075 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_book' for key 'source_task.PRIMARY'")
+13:24:06.075 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_book' ; data: {'next_run_time': 1665035044.975297, 'job_state': b'\x80\x05\x95\xf0\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\x08new_book\x94\x8c\x04func\x94\x8c&apps.tasks.sources.new_book:start_book\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\r,\x04\x0e\xe1\xc1\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\nstart_book\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\r,\x04\x0e\xe1\xc1\x94h\x1b\x86\x94R\x94u.'}
+13:24:06.189 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_book' ; data: None
+13:24:06.237 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_book', 'type': 0, 'job_info': '{"version": 1, "id": "new_book", "func": "apps.tasks.sources.new_book:start_book", "executor": "default", "args": [], "kwargs": {}, "name": "start_book", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 13:44:04.975297+08:00"}'}; t_index: None
+13:24:06.319 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:24:06.320 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_book, start_book (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 13:44:04 CST)
+13:24:06.323 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_movie', 'next_run_time': 1665037444.975299, 'job_state': b'\x80\x05\x95\xf4\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_movie\x94\x8c\x04func\x94\x8c(apps.tasks.sources.new_movie:start_movie\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0e\x18\x04\x0e\xe1\xc3\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_movie\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0e\x18\x04\x0e\xe1\xc3\x94h\x1b\x86\x94R\x94u.'}
+13:24:06.371 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_movie' for key 'source_task.PRIMARY'")
+13:24:06.372 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_movie' ; data: {'next_run_time': 1665037444.975299, 'job_state': b'\x80\x05\x95\xf4\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_movie\x94\x8c\x04func\x94\x8c(apps.tasks.sources.new_movie:start_movie\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0e\x18\x04\x0e\xe1\xc3\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_movie\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0e\x18\x04\x0e\xe1\xc3\x94h\x1b\x86\x94R\x94u.'}
+13:24:06.482 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_movie' ; data: None
+13:24:06.528 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_movie', 'type': 0, 'job_info': '{"version": 1, "id": "new_movie", "func": "apps.tasks.sources.new_movie:start_movie", "executor": "default", "args": [], "kwargs": {}, "name": "start_movie", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 14:24:04.975299+08:00"}'}; t_index: None
+13:24:06.592 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:24:06.594 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_movie, start_movie (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 14:24:04 CST)
+13:24:06.597 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_music', 'next_run_time': 1665041044.9753, 'job_state': b'\x80\x05\x95\xf8\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_music\x94\x8c\x04func\x94\x8c,apps.tasks.sources.hot_top_music:start_music\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0f\x18\x04\x0e\xe1\xc4\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_music\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0f\x18\x04\x0e\xe1\xc4\x94h\x1b\x86\x94R\x94u.'}
+13:24:06.646 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_music' for key 'source_task.PRIMARY'")
+13:24:06.647 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_music' ; data: {'next_run_time': 1665041044.9753, 'job_state': b'\x80\x05\x95\xf8\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_music\x94\x8c\x04func\x94\x8c,apps.tasks.sources.hot_top_music:start_music\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0f\x18\x04\x0e\xe1\xc4\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_music\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0f\x18\x04\x0e\xe1\xc4\x94h\x1b\x86\x94R\x94u.'}
+13:24:06.755 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_music' ; data: None
+13:24:06.805 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_music', 'type': 0, 'job_info': '{"version": 1, "id": "new_music", "func": "apps.tasks.sources.hot_top_music:start_music", "executor": "default", "args": [], "kwargs": {}, "name": "start_music", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 15:24:04.975300+08:00"}'}; t_index: None
+13:24:06.885 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:24:06.887 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_music, start_music (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 15:24:04 CST)
+13:24:06.934 | INFO | main.startup| 64 | ********************  START:2022-10-06 13:24:06 ********************
+13:24:06.935 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:24:07.010 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033846.93543 ; data: None
+13:24:07.054 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:24:07.102 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:24:07.103 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:24:07.182 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033847.103714 ; data: None
+13:24:07.228 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:24:07.286 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:24:07.287 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:24:07.375 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033847.287252 ; data: None
+13:24:07.419 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:24:07.465 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:24:07.465 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:24:07.541 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033847.465637 ; data: None
+13:24:07.589 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:24:07.636 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:24:26.345 | INFO | apps.routers.tasks.task.add_job| 208 | add job {'id': 'new_music', 'name': 'start_music', 'func': 'apps.tasks.sources.hot_top_music:start_music', 'args': [], 'kwargs': {}, 'executor': 'default', 'jobstore': 'default', 'misfire_grace_time': 86400, 'coalesce': False, 'max_instances': 1, 'next_run_time': None, 'replace_existing': True, 'trigger': 'date', 'trigger_args': {'run_date': '2022-10-06 13:45:56'}}
+13:24:26.346 | INFO | apps.routers.tasks.task.add_job| 216 | add job data: {'id': 'new_music', 'name': 'start_music', 'func': 'apps.tasks.sources.hot_top_music:start_music', 'args': [], 'kwargs': {}, 'executor': 'default', 'jobstore': 'default', 'misfire_grace_time': 86400, 'coalesce': False, 'max_instances': 1, 'replace_existing': True, 'trigger': 'date'}; trigger_args: {'run_date': '2022-10-06 13:45:56'}
+13:24:26.455 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_music', 'type': 0, 'job_info': '{"version": 1, "id": "new_music", "func": "apps.tasks.sources.hot_top_music:start_music", "executor": "default", "args": [], "kwargs": {}, "name": "start_music", "misfire_grace_time": 86400, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 13:45:56+08:00"}'}; t_index: None
+13:24:26.521 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:24:26.525 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:24:26.602 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665033866.526261 ; data: None
+13:24:26.649 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:24:26.696 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:29:49.405 | INFO | main.shutdown| 92 | 关闭数据库连接池 default
+13:29:49.406 | INFO | main.shutdown| 97 | 关闭Redis连接池
+13:29:49.406 | INFO | main.shutdown| 99 | 关闭redis连接池:11
+13:29:49.406 | INFO | main.shutdown| 103 | 关闭sync_redis连接池: 11
+13:29:49.406 | INFO | main.shutdown| 109 | *********  END:2022-10-06 13:29:49 *********
+13:29:51.207 | INFO | apps.dbdriver.mysql.connect_pool| 41 | 连接异步数据库:121.4.108.200, -- test_001
+13:29:51.431 | INFO | apps.dbdriver.redis.redis_connect_pool| 35 | 连接Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:29:51.432 | INFO | apps.dbdriver.redis.redis_connect_pool| 77 | 连接Sync_Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:29:51.527 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: 
+                    create table if not exists source_task(
+                      `id` varchar(191) NOT NULL,
+                      `next_run_time` double DEFAULT NULL,
+                      `job_state` blob NOT NULL,
+                      PRIMARY KEY (`id`),
+                      KEY `ix_api_job_next_run_time` (`next_run_time`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+                 ; data: None
+13:29:51.629 | INFO | apscheduler.schedulers.base.start| 166 | Scheduler started
+13:29:51.629 | INFO | apps.core.ini_scheduler.init_scheduler| 101 | apps is running...
+13:29:51.629 | INFO | main.startup| 58 | 开始加载 静态任务
+13:29:51.629 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:              CREATE TABLE IF NOT EXISTS `aps_task_log` (               `id` bigint(20) NOT NULL AUTO_INCREMENT,               `job_id` varchar(191) COLLATE utf8mb4_general_ci NOT NULL,               `job_info` json DEFAULT NULL,               `type` tinyint(3) DEFAULT NULL COMMENT '1 删除｜0添加或修改｜ 错误 4',               `creamt_time` datetime DEFAULT CURRENT_TIMESTAMP,               PRIMARY KEY (`id`),               KEY `task_log_job_id_idx` (`job_id`) USING BTREE             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;         ; data: None; t_index: None
+13:29:51.724 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_book', 'next_run_time': 1665035390.599633, 'job_state': b'\x80\x05\x95\xf0\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\x08new_book\x94\x8c\x04func\x94\x8c&apps.tasks.sources.new_book:start_book\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\r12\t&Q\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\nstart_book\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\r12\t&Q\x94h\x1b\x86\x94R\x94u.'}
+13:29:51.771 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_book' for key 'source_task.PRIMARY'")
+13:29:51.771 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_book' ; data: {'next_run_time': 1665035390.599633, 'job_state': b'\x80\x05\x95\xf0\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\x08new_book\x94\x8c\x04func\x94\x8c&apps.tasks.sources.new_book:start_book\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\r12\t&Q\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\nstart_book\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\r12\t&Q\x94h\x1b\x86\x94R\x94u.'}
+13:29:51.873 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_book' ; data: None
+13:29:51.921 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_book', 'type': 0, 'job_info': '{"version": 1, "id": "new_book", "func": "apps.tasks.sources.new_book:start_book", "executor": "default", "args": [], "kwargs": {}, "name": "start_book", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 13:49:50.599633+08:00"}'}; t_index: None
+13:29:51.995 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:29:51.996 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_book, start_book (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 13:49:50 CST)
+13:29:51.998 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_movie', 'next_run_time': 1665037790.599635, 'job_state': b'\x80\x05\x95\xf4\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_movie\x94\x8c\x04func\x94\x8c(apps.tasks.sources.new_movie:start_movie\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0e\x1d2\t&S\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_movie\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0e\x1d2\t&S\x94h\x1b\x86\x94R\x94u.'}
+13:29:52.046 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_movie' for key 'source_task.PRIMARY'")
+13:29:52.047 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_movie' ; data: {'next_run_time': 1665037790.599635, 'job_state': b'\x80\x05\x95\xf4\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_movie\x94\x8c\x04func\x94\x8c(apps.tasks.sources.new_movie:start_movie\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0e\x1d2\t&S\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_movie\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0e\x1d2\t&S\x94h\x1b\x86\x94R\x94u.'}
+13:29:52.157 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_movie' ; data: None
+13:29:52.204 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_movie', 'type': 0, 'job_info': '{"version": 1, "id": "new_movie", "func": "apps.tasks.sources.new_movie:start_movie", "executor": "default", "args": [], "kwargs": {}, "name": "start_movie", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 14:29:50.599635+08:00"}'}; t_index: None
+13:29:52.277 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:29:52.277 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_movie, start_movie (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 14:29:50 CST)
+13:29:52.278 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_music', 'next_run_time': 1665041390.599636, 'job_state': b'\x80\x05\x95\xf8\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_music\x94\x8c\x04func\x94\x8c,apps.tasks.sources.hot_top_music:start_music\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0f\x1d2\t&T\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_music\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0f\x1d2\t&T\x94h\x1b\x86\x94R\x94u.'}
+13:29:52.326 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_music' for key 'source_task.PRIMARY'")
+13:29:52.326 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_music' ; data: {'next_run_time': 1665041390.599636, 'job_state': b'\x80\x05\x95\xf8\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_music\x94\x8c\x04func\x94\x8c,apps.tasks.sources.hot_top_music:start_music\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0f\x1d2\t&T\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_music\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0f\x1d2\t&T\x94h\x1b\x86\x94R\x94u.'}
+13:29:52.434 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_music', 'type': 0, 'job_info': '{"version": 1, "id": "new_music", "func": "apps.tasks.sources.hot_top_music:start_music", "executor": "default", "args": [], "kwargs": {}, "name": "start_music", "misfire_grace_time": 86400, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 13:45:56+08:00"}'}; t_index: None
+13:29:52.510 | INFO | apscheduler.schedulers.base._real_add_job| 881 | Added job "%s" to job store "%s"
+13:29:52.510 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_music, start_music (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 15:29:50 CST)
+13:29:52.551 | INFO | main.startup| 64 | ********************  START:2022-10-06 13:29:52 ********************
+13:29:52.551 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:29:52.620 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665034192.552061 ; data: None
+13:29:52.667 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:29:52.713 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:29:52.713 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:29:52.787 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665034192.714255 ; data: None
+13:29:52.835 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:29:52.881 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:29:52.881 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:29:52.953 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665034192.881911 ; data: None
+13:29:53.002 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:29:53.045 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:29:53.045 | DEBUG | apscheduler.schedulers.base._process_jobs| 940 | Looking for jobs to run
+13:29:53.115 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665034193.045815 ; data: None
+13:29:53.161 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:29:53.205 | DEBUG | apscheduler.schedulers.base._process_jobs| 1019 | Next wakeup is due at %s (in %f seconds)
+13:29:55.632 | INFO | main.shutdown| 92 | 关闭数据库连接池 default
+13:29:55.632 | INFO | main.shutdown| 97 | 关闭Redis连接池
+13:29:55.632 | INFO | main.shutdown| 99 | 关闭redis连接池:11
+13:29:55.633 | INFO | main.shutdown| 103 | 关闭sync_redis连接池: 11
+13:29:55.633 | INFO | main.shutdown| 109 | *********  END:2022-10-06 13:29:55 *********
+13:33:58.625 | INFO | apps.dbdriver.mysql.connect_pool| 41 | 连接异步数据库:121.4.108.200, -- test_001
+13:33:58.809 | INFO | apps.dbdriver.redis.redis_connect_pool| 35 | 连接Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:33:58.810 | INFO | apps.dbdriver.redis.redis_connect_pool| 77 | 连接Sync_Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:33:58.945 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: 
+                    create table if not exists source_task(
+                      `id` varchar(191) NOT NULL,
+                      `next_run_time` double DEFAULT NULL,
+                      `job_state` blob NOT NULL,
+                      PRIMARY KEY (`id`),
+                      KEY `ix_api_job_next_run_time` (`next_run_time`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+                 ; data: None
+13:33:58.996 | INFO | apscheduler.schedulers.base.start| 171 | Scheduler started
+13:33:58.996 | INFO | apps.core.ini_scheduler.init_scheduler| 101 | apps is running...
+13:33:58.997 | INFO | main.startup| 58 | 开始加载 静态任务
+13:33:58.997 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:              CREATE TABLE IF NOT EXISTS `aps_task_log` (               `id` bigint(20) NOT NULL AUTO_INCREMENT,               `job_id` varchar(191) COLLATE utf8mb4_general_ci NOT NULL,               `job_info` json DEFAULT NULL,               `type` tinyint(3) DEFAULT NULL COMMENT '1 删除｜0添加或修改｜ 错误 4',               `creamt_time` datetime DEFAULT CURRENT_TIMESTAMP,               PRIMARY KEY (`id`),               KEY `task_log_job_id_idx` (`job_id`) USING BTREE             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;         ; data: None; t_index: None
+13:33:59.055 | DEBUG | apscheduler.schedulers.base._process_jobs| 944 | Looking for jobs to run
+13:33:59.153 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665034439.055656 ; data: None
+13:33:59.200 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:33:59.247 | DEBUG | apscheduler.schedulers.base._process_jobs| 1023 | Next wakeup is due at %s (in %f seconds)
+13:34:54.115 | INFO | apps.dbdriver.mysql.connect_pool| 41 | 连接异步数据库:121.4.108.200, -- test_001
+13:34:54.307 | INFO | apps.dbdriver.redis.redis_connect_pool| 35 | 连接Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:34:54.308 | INFO | apps.dbdriver.redis.redis_connect_pool| 77 | 连接Sync_Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:34:54.442 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: 
+                    create table if not exists source_task(
+                      `id` varchar(191) NOT NULL,
+                      `next_run_time` double DEFAULT NULL,
+                      `job_state` blob NOT NULL,
+                      PRIMARY KEY (`id`),
+                      KEY `ix_api_job_next_run_time` (`next_run_time`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+                 ; data: None
+13:34:54.491 | INFO | apscheduler.schedulers.base.start| 171 | Scheduler started
+13:34:54.491 | INFO | apps.core.ini_scheduler.init_scheduler| 101 | apps is running...
+13:34:54.492 | INFO | main.startup| 58 | 开始加载 静态任务
+13:34:54.492 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:              CREATE TABLE IF NOT EXISTS `aps_task_log` (               `id` bigint(20) NOT NULL AUTO_INCREMENT,               `job_id` varchar(191) COLLATE utf8mb4_general_ci NOT NULL,               `job_info` json DEFAULT NULL,               `type` tinyint(3) DEFAULT NULL COMMENT '1 删除｜0添加或修改｜ 错误 4',               `creamt_time` datetime DEFAULT CURRENT_TIMESTAMP,               PRIMARY KEY (`id`),               KEY `task_log_job_id_idx` (`job_id`) USING BTREE             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;         ; data: None; t_index: None
+13:34:54.555 | DEBUG | apscheduler.schedulers.base._process_jobs| 944 | Looking for jobs to run
+13:34:54.647 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665034494.555625 ; data: None
+13:34:54.691 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:34:54.733 | DEBUG | apscheduler.schedulers.base._process_jobs| 1023 | Next wakeup is due at %s (in %f seconds)
+13:36:58.540 | INFO | apps.dbdriver.mysql.connect_pool| 41 | 连接异步数据库:121.4.108.200, -- test_001
+13:36:58.749 | INFO | apps.dbdriver.redis.redis_connect_pool| 35 | 连接Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:36:58.749 | INFO | apps.dbdriver.redis.redis_connect_pool| 77 | 连接Sync_Redis: {'host': '127.0.0.1', 'port': 6379, 'db': 1}
+13:36:58.878 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: 
+                    create table if not exists source_task(
+                      `id` varchar(191) NOT NULL,
+                      `next_run_time` double DEFAULT NULL,
+                      `job_state` blob NOT NULL,
+                      PRIMARY KEY (`id`),
+                      KEY `ix_api_job_next_run_time` (`next_run_time`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+                 ; data: None
+13:36:58.929 | INFO | apscheduler.schedulers.base.start| 171 | Scheduler started
+13:36:58.930 | INFO | apps.core.ini_scheduler.init_scheduler| 101 | apps is running...
+13:36:58.930 | INFO | main.startup| 58 | 开始加载 静态任务
+13:36:58.930 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:              CREATE TABLE IF NOT EXISTS `aps_task_log` (               `id` bigint(20) NOT NULL AUTO_INCREMENT,               `job_id` varchar(191) COLLATE utf8mb4_general_ci NOT NULL,               `job_info` json DEFAULT NULL,               `type` tinyint(3) DEFAULT NULL COMMENT '1 删除｜0添加或修改｜ 错误 4',               `creamt_time` datetime DEFAULT CURRENT_TIMESTAMP,               PRIMARY KEY (`id`),               KEY `task_log_job_id_idx` (`job_id`) USING BTREE             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;         ; data: None; t_index: None
+13:36:59.047 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_book', 'next_run_time': 1665035817.916509, 'job_state': b'\x80\x05\x95\xf0\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\x08new_book\x94\x8c\x04func\x94\x8c&apps.tasks.sources.new_book:start_book\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\r89\r\xfc\x1d\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\nstart_book\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\r89\r\xfc\x1d\x94h\x1b\x86\x94R\x94u.'}
+13:36:59.096 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_book' for key 'source_task.PRIMARY'")
+13:36:59.096 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_book' ; data: {'next_run_time': 1665035817.916509, 'job_state': b'\x80\x05\x95\xf0\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\x08new_book\x94\x8c\x04func\x94\x8c&apps.tasks.sources.new_book:start_book\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\r89\r\xfc\x1d\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\nstart_book\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\r89\r\xfc\x1d\x94h\x1b\x86\x94R\x94u.'}
+13:36:59.208 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_book' ; data: None
+13:36:59.258 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_book', 'type': 0, 'job_info': '{"version": 1, "id": "new_book", "func": "apps.tasks.sources.new_book:start_book", "executor": "default", "args": [], "kwargs": {}, "name": "start_book", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 13:56:57.916509+08:00"}'}; t_index: None
+13:36:59.332 | INFO | apscheduler.schedulers.base._real_add_job| 885 | Added job "%s" to job store "%s"
+13:36:59.332 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_book, start_book (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 13:56:57 CST)
+13:36:59.337 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_movie', 'next_run_time': 1665038217.916512, 'job_state': b'\x80\x05\x95\xf4\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_movie\x94\x8c\x04func\x94\x8c(apps.tasks.sources.new_movie:start_movie\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0e$9\r\xfc \x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_movie\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0e$9\r\xfc \x94h\x1b\x86\x94R\x94u.'}
+13:36:59.386 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_movie' for key 'source_task.PRIMARY'")
+13:36:59.388 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_movie' ; data: {'next_run_time': 1665038217.916512, 'job_state': b'\x80\x05\x95\xf4\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_movie\x94\x8c\x04func\x94\x8c(apps.tasks.sources.new_movie:start_movie\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0e$9\r\xfc \x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_movie\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0e$9\r\xfc \x94h\x1b\x86\x94R\x94u.'}
+13:36:59.506 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select job_state from source_task where id='new_movie' ; data: None
+13:36:59.554 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_movie', 'type': 0, 'job_info': '{"version": 1, "id": "new_movie", "func": "apps.tasks.sources.new_movie:start_movie", "executor": "default", "args": [], "kwargs": {}, "name": "start_movie", "misfire_grace_time": 1800, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 14:36:57.916512+08:00"}'}; t_index: None
+13:36:59.644 | INFO | apscheduler.schedulers.base._real_add_job| 885 | Added job "%s" to job store "%s"
+13:36:59.645 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_movie, start_movie (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 14:36:57 CST)
+13:36:59.651 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: insert into source_task(id, next_run_time, job_state)
+             values(%(job_id)s, %(next_run_time)s, %(job_state)s) ; data: {'job_id': 'new_music', 'next_run_time': 1665041817.916513, 'job_state': b'\x80\x05\x95\xf8\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_music\x94\x8c\x04func\x94\x8c,apps.tasks.sources.hot_top_music:start_music\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0f$9\r\xfc!\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_music\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0f$9\r\xfc!\x94h\x1b\x86\x94R\x94u.'}
+13:36:59.705 | ERROR | apps.core.MysqlJobStore.execute| 124 | execute job error (1062, "Duplicate entry 'new_music' for key 'source_task.PRIMARY'")
+13:36:59.706 | INFO | apps.core.MysqlJobStore.execute| 116 | execute: update source_task set next_run_time=%(next_run_time)s, job_state=%(job_state)s where id='new_music' ; data: {'next_run_time': 1665041817.916513, 'job_state': b'\x80\x05\x95\xf8\x01\x00\x00\x00\x00\x00\x00}\x94(\x8c\x07version\x94K\x01\x8c\x02id\x94\x8c\tnew_music\x94\x8c\x04func\x94\x8c,apps.tasks.sources.hot_top_music:start_music\x94\x8c\x07trigger\x94\x8c\x1dapscheduler.triggers.interval\x94\x8c\x0fIntervalTrigger\x94\x93\x94)\x81\x94}\x94(h\x01K\x02\x8c\x08timezone\x94\x8c\x04pytz\x94\x8c\x02_p\x94\x93\x94(\x8c\rAsia/Shanghai\x94M\xe8qK\x00\x8c\x03LMT\x94t\x94R\x94\x8c\nstart_date\x94\x8c\x08datetime\x94\x8c\x08datetime\x94\x93\x94C\n\x07\xe6\n\x06\x0f$9\r\xfc!\x94h\x0f(h\x10M\x80pK\x00\x8c\x03CST\x94t\x94R\x94\x86\x94R\x94\x8c\x08end_date\x94N\x8c\x08interval\x94h\x15\x8c\ttimedelta\x94\x93\x94K\x02K\x00K\x00\x87\x94R\x94\x8c\x06jitter\x94Nub\x8c\x08executor\x94\x8c\x07default\x94\x8c\x04args\x94)\x8c\x06kwargs\x94}\x94\x8c\x04name\x94\x8c\x0bstart_music\x94\x8c\x12misfire_grace_time\x94M\x08\x07\x8c\x08coalesce\x94\x89\x8c\rmax_instances\x94K\x01\x8c\rnext_run_time\x94h\x17C\n\x07\xe6\n\x06\x0f$9\r\xfc!\x94h\x1b\x86\x94R\x94u.'}
+13:36:59.827 | INFO | apps.dbdriver.mysql.execute| 308 | execute sql:  insert into aps_task_log( `job_id`, `type`, `job_info` ) values( %(job_id)s, %(type)s, %(job_info)s )  ; data: {'job_id': 'new_music', 'type': 0, 'job_info': '{"version": 1, "id": "new_music", "func": "apps.tasks.sources.hot_top_music:start_music", "executor": "default", "args": [], "kwargs": {}, "name": "start_music", "misfire_grace_time": 86400, "coalesce": false, "max_instances": 1, "next_run_time": "2022-10-06 13:45:56+08:00"}'}; t_index: None
+13:36:59.902 | INFO | apscheduler.schedulers.base._real_add_job| 885 | Added job "%s" to job store "%s"
+13:36:59.903 | INFO | apps.core.ini_scheduler.add_config_job| 108 | 添加任务： new_music, start_music (trigger: interval[2 days, 0:00:00], next run at: 2022-10-06 15:36:57 CST)
+13:36:59.952 | INFO | main.startup| 64 | ********************  START:2022-10-06 13:36:59 ********************
+13:36:59.952 | DEBUG | apscheduler.schedulers.base._process_jobs| 944 | Looking for jobs to run
+13:37:00.040 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665034619.952966 ; data: None
+13:37:00.089 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:37:00.137 | DEBUG | apscheduler.schedulers.base._process_jobs| 1023 | Next wakeup is due at %s (in %f seconds)
+13:37:00.138 | DEBUG | apscheduler.schedulers.base._process_jobs| 944 | Looking for jobs to run
+13:37:00.224 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665034620.138271 ; data: None
+13:37:00.274 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:37:00.323 | DEBUG | apscheduler.schedulers.base._process_jobs| 1023 | Next wakeup is due at %s (in %f seconds)
+13:37:00.323 | DEBUG | apscheduler.schedulers.base._process_jobs| 944 | Looking for jobs to run
+13:37:00.414 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665034620.324216 ; data: None
+13:37:00.462 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:37:00.512 | DEBUG | apscheduler.schedulers.base._process_jobs| 1023 | Next wakeup is due at %s (in %f seconds)
+13:37:00.513 | DEBUG | apscheduler.schedulers.base._process_jobs| 944 | Looking for jobs to run
+13:37:00.601 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+        where next_run_time <= 1665034620.513729 ; data: None
+13:37:00.651 | INFO | apps.core.MysqlJobStore.fetchone| 94 | fetchone: select next_run_time from source_task where next_run_time is not null order by next_run_time limit 1 ; data: None
+13:37:00.700 | DEBUG | apscheduler.schedulers.base._process_jobs| 1023 | Next wakeup is due at %s (in %f seconds)
+13:37:13.059 | INFO | apps.core.MysqlJobStore.fetchmany| 71 | fetchmany: 
+            select id, job_state from source_task 
+         ; data: None
+13:37:17.671 | INFO | main.shutdown| 92 | 关闭数据库连接池 default
+13:37:17.671 | INFO | main.shutdown| 97 | 关闭Redis连接池
+13:37:17.671 | INFO | main.shutdown| 99 | 关闭redis连接池:11
+13:37:17.671 | INFO | main.shutdown| 103 | 关闭sync_redis连接池: 11
+13:37:17.671 | INFO | main.shutdown| 109 | *********  END:2022-10-06 13:37:17 *********
