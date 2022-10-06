@@ -16,12 +16,7 @@
 
     http://0.0.0.0:5100/app/api/docs
 
-<<<<<<< HEAD
     ![img.png](../static/img.png)
-
-=======
-    !(../static/img.png)
->>>>>>> 101beaf (readme)
 
 
 
